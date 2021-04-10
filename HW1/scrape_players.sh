@@ -1,3 +1,5 @@
+#!/bin/bash
+chmod +x ./scrape_players.sh
 wget https://premierleague.com/players
 #taking only the relevant players
 cat players | grep -P -o "/players/[0-9]+/[a-z A-Z -]+/overview" players >> mid
