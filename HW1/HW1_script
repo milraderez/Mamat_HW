@@ -1,4 +1,5 @@
 wget https://premierleague.com/players
 cat players | grep -P -o "/players/[0-9]+/[a-z A-Z -]+/overview" players >> mid
 sed -i 's/\/players/https:\/\/www.\premierleague\.com\/players/' mid
-while read -r line; do wget -O- $line | grep -P -i -c 'Midfielder' >> results.csv  ; done < mid
+while read -r line; do wget -O- $line | grep -P -i -c 'Midfielder' >> temp_results.csv  ; done < mid
+grep -v -e "^0$" temp_results.csv >> results.csv
