@@ -12,8 +12,8 @@ while read -r line; do wget -O- $line | grep -P -i -c 'Midfielder' >> temp_count
 #adding the numbers from temp count in line
 awk 'FNR==NR{a[NR] = $1;next}{$3 = a[FNR]}1' temp_count.csv temp_results.csv >> temp_results.csv
 rm temp_count.csv
-echo "Total Players: $(cat mid |wc -l) " > results.csv
+echo "Total Players: $(cat mid |wc -l) " > Results.csv
 rm mid
 #picking only the "real" midfielders for the final file
-cat temp_results.csv | grep -P -o "https://www.premierleague.com/players/[0-9]+/[a-z A-Z -]+/overview, Midfielder, [1-9]+" temp_results.csv >> results.csv
+cat temp_results.csv | grep -P -o "https://www.premierleague.com/players/[0-9]+/[a-z A-Z -]+/overview, Midfielder, [1-9]+" temp_results.csv >> Results.csv
 rm temp_results.csv
