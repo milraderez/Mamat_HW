@@ -1,0 +1,18 @@
+1. we would assume about 1 minute pre page, for seaching both Midfielder and 
+   midfielder, counting and inserting to the file, for a total of 25 min.
+   
+2. we came to the conclusion that writing a bash script might take a while, 
+   but can save a lot of time when its ready to run independently.
+   
+   it can be applied to every need for counting and collecting data, such
+   as picking focus groups for health studies, costumer care, and reviewing 
+   social media opinions about a topic.
+
+3. it would only be needed to re run the script, as the script already deletes
+   his temporary files
+   to perform it automatically every hour, we would need to assign the computer
+   clock to the script, and run it by condition.
+   in order to save runtime, we would keep the temp_result file, and then we
+   would only need to go through the players that aren't showed there, as we 
+   assume that every player that was checked before, wont change his
+   position in the future. 
