@@ -1,12 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <stddef.h>
 
 int median_find(int* grade_histogram, int student_count);
 
 int main(int argc, char* argv[]) {
 	FILE *fd_course, *fd_grade;
-	int grade_histogram[101] = { 0 }, garbage = 0, end = 0;
+	int grade_histogram[101] = { 0 }, garbage = 0;
 	int new_student = 0 , student_count = 0, grade_sum = 0;
 	int max_grade = 0, min_grade = 101, pass_count = 0;
 	bool still_have_students = true;
