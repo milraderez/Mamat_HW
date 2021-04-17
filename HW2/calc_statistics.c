@@ -7,7 +7,7 @@ int median_find(int* grade_histogram, int student_count);
 
 int main(int argc, char* argv[]) {
 	FILE *fd_course, *fd_grade;
-	int grade_histogram[101] = { 0 }, garbage = 0;
+	int grade_histogram[101] = { 0 };
 	int new_student = 0 , student_count = 0, grade_sum = 0;
 	int max_grade = 0, min_grade = 101, pass_count = 0;
 	bool still_have_students = true;
@@ -15,9 +15,8 @@ int main(int argc, char* argv[]) {
 	fd_grade = fopen("grades.txt", "r");
 	// skips the first line of headlines
 	fscanf(fd_grade, "%*[^\n]\n"); 
-	// garbage is meant to read the ID column
 	while (still_have_students == true) {
-		if (fscanf(fd_grade, "%d %d", &garbage, &new_student) == EOF) {
+		if (fscanf(fd_grade, "%d", &new_student) == EOF) {
 			still_have_students = false;
 		}
 		if (still_have_students == false || new_student > 100 ||
