@@ -3,23 +3,21 @@ chmod +x ./course_stat.sh
 
 #checking if the number of arguments is correct, if not exit
 if [ "$#" -ne 1 ]; then
-	echo "Usage: $0 DIRECTORY" >&2
 	echo "Wrong number of arguments"
 	exit 1
 fi 
 
 #checking if there is a file from the correct format
-x=$(ls $1.txt) 
+x=$(ls -R 2>/dev/null $1.txt) 
 if [[ -z $x ]];then
-	echo "course not found"
+	echo "Course not found"
 	exit 1
 fi
 
 #searching and deleting if there is already a directory
-echo $1
 y=$(find $1_stat)
 if [[ ! -z $y ]];then
-	rm -dr $y
+	rm -dr -R 2>/dev/null  $y
 fi
 
 #creating a new empty directory
