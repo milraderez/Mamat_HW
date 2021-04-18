@@ -5,14 +5,14 @@
 
 int median_find(int* grade_histogram, int student_count);
 
-int main(int argc, char* argv[]) {
+int main() {
 	FILE *fd_course, *fd_grade;
 	int grade_histogram[101] = { 0 };
 	int new_student = 0 , student_count = 0, grade_sum = 0;
 	int max_grade = 0, min_grade = 101, pass_count = 0;
 	bool still_have_students = true;
 	fd_course = fopen("course_statistics.txt", "w");
-	fd_grade = fopen("grades.txt", "r");
+	fd_grade = fopen("044101_stat/grades.txt", "r");
 	// skips the first line of headlines
 	fscanf(fd_grade, "%*[^\n]\n"); 
 	while (still_have_students == true) {
@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
 		else {
 			fprintf(fd_course, " %d", grade_histogram[i]);
 			//every last number of a row, to keep the histogram shape
-			if (i % 10 == 0 && i < 100) {
+			if (i % 10 == 0) {
 				fprintf(fd_course, "\n");
 			}
 		}
@@ -91,3 +91,4 @@ int median_find(int* grade_histogram, int student_count) {
 	//median formula
 	return all_students[ (student_count + 1) / 2 ];
 }
+
