@@ -15,9 +15,9 @@ if [[ -z $x ]];then
 fi
 
 #searching and deleting if there is already a directory
-y=$(find $1_stat)
+y=$(find $1_stat 2>/dev/null)
 if [[ ! -z $y ]];then
-	rm -dr -R 2>/dev/null  $y
+	rm -dr -R 2>/dev/null $y
 fi
 
 #creating a new empty directory
@@ -29,7 +29,6 @@ awk '{print $2}' $1.txt > ./"$1"_stat/grades.txt
 #compile and run calc_statistics.c
 gcc -c -g -Wall calc_statistics.c
 gcc -o calc_statistics.exe calc_statistics.o
-./calc_statistics.exe
-
+./calc_statistics.exe "$1_stat/grades.txt"
 #printing to the screen 
 cat "course_statistics.txt"
