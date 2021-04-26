@@ -4,7 +4,7 @@ CCLINK = $(CC)
 CFLAGS = -g -Wall -std=c99
 EXEC = prog
 OBJS = main.o file0.o file1.o file2.o file3.o file4.o
-RM = rm -rf *.o *.exe $(EXEC)
+RM = rm -rf *.o $(EXEC)
 STDLIB = /usr/include/stdlib.h
 STDIO = /usr/include/stdio.h
 #STDLIB and STDIO are full paths to the containing folder
