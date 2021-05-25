@@ -2,6 +2,7 @@
 chmod +x ./firewall.sh
 packets=`cat`
 passed_all=""
+
 	while read rule
 	do
 		rule_cut=`echo "$rule" | sed 's/ //g' | sed '/^$/d' | grep -o '^[^#]*'`
@@ -14,4 +15,7 @@ passed_all=""
 			passed_all+=`echo "${passed_4}" |sed 's/src-ip/\nsrc-ip/'`
 		fi
 	done < "$1"
+	
 echo -e "$passed_all" | sed '/^$/d' | sed 's/ //g' | sort -u
+
+

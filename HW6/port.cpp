@@ -8,7 +8,7 @@ Port::~Port() {
 
 bool Port::match_value(String packet) const {
 	int value = packet.trim().to_integer();
-	if (value < port_limits[BIGGEST] || value > port_limits[SMALLEST]) {
+	if (value <= port_limits[BIGGEST] || value >= port_limits[SMALLEST]) {
 		return true;
 	}
 	return false;
