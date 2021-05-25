@@ -8,6 +8,10 @@
 #define BYTE 8
 #define SPACE ' '
 #define STRING_END '\0'
+#define MAX_BYTES_MOVE 3
+#define MAX_BYTE_SIZE 256
+#define MIN_BYTE_SIZE 0
+#define IP_SIZE 4
 
 //default constructor
 String::String() {
@@ -158,42 +162,47 @@ int String::to_integer() const {
 	size_t size = 0;
 	String* sub_str;
 	split(".", &sub_str, &size);
-	for (unsigned int i = 0; i < size; i++) {
-		sub_str[i] = sub_str[i].trim();
-		int current_byte = atoi(sub_str[i].data);
-		if (current_byte < 1 || current_byte > 255) {
-			return 0;
+	if(size == IP_SIZE){
+		for (unsigned int i = 0; i < size; i++) {
+			int current_byte = atoi(sub_str[i].trim().data);
+			if (current_byte < MIN_BYTE_SIZE || current_byte > MAX_BYTE_SIZE) {
+				return 0;
+			}
+			else {
+			 num = num | current_byte << ((MAX_BYTES_MOVE - i) * BYTE);
+			}
 		}
-		else {
-			num = num | ((INT_BITS - BYTE) << (i * BYTE));
-		}
+	}
+	else{
+		num = atoi(sub_str[0].trim().data);
 	}
 	delete[] sub_str;
 	return num;
 }
 
 String String::trim() const {
-	int start = 0, end = this->length - 1;
+	int start = 0, end = (this->length - 1);
 	if (this->data == NULL) {
 		return String();
 	}
-	else {
-		while (this->data[start] == SPACE) {
-			start++;
-		}
-		while (start != end && this->data[end] == SPACE) {
-			end--;
-		}
-		end++;
-		if (start >= end) {
-			return String();
-		}
-		else {
-			int trimmed_length = end - start + 1;
-			char new_str[trimmed_length];
-			strncpy(new_str, &(this->data[start]), trimmed_length);
-			new_str[trimmed_length - 1] = STRING_END;
-			return String(new_str);
-		}
+
+	while (this->data[start] == SPACE) {
+		start++;
 	}
+	while (start != end && this->data[end] == SPACE) {
+		end--;
+	}
+
+	end++;
+
+	if (start >= end) {
+		return String();
+	}
+
+	int trimmed_length = (end - start);
+	char new_str[trimmed_length + 1];
+	strncpy(new_str, &(this->data[start]), trimmed_length);
+	new_str[trimmed_length] = STRING_END;
+
+	return String(new_str);
 }

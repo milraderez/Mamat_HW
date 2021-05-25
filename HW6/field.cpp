@@ -20,8 +20,7 @@ bool Field::match(String packet) {
 		return false;
 	}
 	for (int i = 0; i < int(size); i+=2) {
-		sub_string[i] = sub_string[i].trim();
-		if (pattern.equals(sub_string[i]) == true) {
+		if (pattern.equals(sub_string[i].trim()) == true) {
 			field_match = match_value(sub_string[i + 1]);
 			break;
 		}
