@@ -13,13 +13,17 @@
 #define MIN_BYTE_SIZE 0
 #define IP_SIZE 4
 
-//default constructor
+/*
+   @brief default constructor, taking no params
+*/
 String::String() {
 	this->data = NULL;
 	this->length = 0;
 }
 
-// copy constructor
+/* 
+   @brief copy constructor by reference
+*/
 String::String(const String &str) {
 	if (str.length == 0) {
 		this->data = NULL;
@@ -31,7 +35,9 @@ String::String(const String &str) {
 	}
 }
 
-// string constructor
+/*
+   @brief copy constructor by string
+*/
 String::String(const char* str) {
 	if (str == NULL) {
 		this->data = NULL;
@@ -49,14 +55,18 @@ String::String(const char* str) {
 	}
 }
 
-//default destructor
+/*
+   @brief default destructor, taking no params
+*/  
 String::~String() {
 	if (this->data != NULL) {
 		delete[] this->data;
 	}
 }
 
-// = operator on reference
+/*
+    @brief = operator by reference
+*/    
 String& String::operator=(const String &rhs) {
 	if (this == &rhs) {
 		return *this;
@@ -70,7 +80,9 @@ String& String::operator=(const String &rhs) {
 	return *this;
 }
 
-// = operator on string
+/*
+    @brief = operator by string
+*/ 
 String& String::operator=(const char* str) {
 	if (this->data != NULL) {
 		delete[] this->data;
@@ -93,7 +105,9 @@ String& String::operator=(const char* str) {
 	return *this;
 }
 
-// equal check on reference
+/* 
+   @brief equal check on reference
+*/   
 bool String::equals(const String& rhs) const {
 	if (rhs.length != this->length) {
 		return false;
@@ -104,7 +118,9 @@ bool String::equals(const String& rhs) const {
 	return true;
 }
 
-// equal check on string
+/* 
+   @brief equal check on string
+*/ 
 bool String::equals(const char* rhs) const {
 	if (strlen(rhs) != this->length) {
 		return false;
@@ -115,6 +131,12 @@ bool String::equals(const char* rhs) const {
 	return true;
 }
 
+/*
+   @brief splits the string by delimiters,returns separated value to output.
+   @note scans for number of delimiters, and then rerun and set '/0' for each
+   		 delimiter, and sends the new word to output.
+   @note last send to output outside the loop meant for the last substring.
+*/
 void String::split(const char* delimiters, String** output, size_t* size) const
 {
 	int deli_count = 0, subs_start = 0;
@@ -151,12 +173,14 @@ void String::split(const char* delimiters, String** output, size_t* size) const
 			}
 		  }
      	}
-		//for the last substring
 		(*output)[current_subs] = String(&temp_str[subs_start]);
 		delete[] temp_str;
 		return;
 }
 
+/*
+   @brief transforms string to int
+*/
 int String::to_integer() const {
 	int num = 0;
 	size_t size = 0;
@@ -180,6 +204,9 @@ int String::to_integer() const {
 	return num;
 }
 
+/*
+   @brief returns new string without spaces
+*/
 String String::trim() const {
 	int start = 0, end = (this->length - 1);
 	if (this->data == NULL) {

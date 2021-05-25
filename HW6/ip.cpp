@@ -1,12 +1,22 @@
 #include "ip.h"
 
-//constructor + access to pattern
+/* @brief default constructor setting a value to Field's private variable 
+          "pattern"
+   @param pattern is a the string we want to start the object with.
+   @note inherits Field(pattern) for easy access to pattern through Ip.
+*/
 Ip::Ip(String pattern): Field(pattern) {
 }
 
+/*
+  @brief default destructor, taking no params
+*/
 Ip::~Ip() {
 }
-
+/*
+  @brief sets ip limits for eligible packet
+  @param val is the ip rule to calculate the limits
+*/
 bool Ip::set_value(String val) {
 	String* sub_string;
 	size_t size = 0;
@@ -32,7 +42,10 @@ bool Ip::set_value(String val) {
     delete[] sub_string;
 	return true;
 }
-
+/*
+   @brief checks if the packet's ip is inside the rule's limits
+   @param packet is the packet's ip.
+*/
 bool Ip::match_value(String packet) const {
 	unsigned int value = packet.trim().to_integer();
 	if (value <= biggest_address && value >= smallest_address) {

@@ -8,9 +8,13 @@
 #define FAIL -1
 #define RULE_NAME 0
 #define RULE_VALUE 1
+#define RULE_FIELDS 2
 
+/*
+  @brief receives a rule and packet file and return packets matching the filter.
+*/
 int main(int argc, char **argv) {
-	String filter[2];
+	String filter[RULE_FIELDS];
 	String *sub_string;
 	size_t size = 0;
 	String empty_string("");
@@ -20,6 +24,7 @@ int main(int argc, char **argv) {
 	if (check_args(argc, argv) != 0) {
 		return FAIL;
 	}
+
 	String rule(argv[1]);
 	rule.split("=,", &sub_string, &size);
 	for (int i = 0; i < (int)size; i++) {

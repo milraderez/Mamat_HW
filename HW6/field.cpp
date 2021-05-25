@@ -2,15 +2,25 @@
 #include <iostream>
 #include <cstring>
 
-// constructor
+/* @brief default constructor setting a value to Field's private variable 
+          "pattern"
+   @param pattern is a the string we want to start the object with.
+*/
 Field::Field(String pattern) {
 	this->pattern = pattern;
 }
 
-//destructor
+/*
+  @brief default destructor, taking no params
+*/
 Field::~Field() {
 }
-
+/*
+  @brief compares between packet and rule to find a match.
+  @note after split, the order in sub_string becomes name-value-name-value,and
+        therefore we scan for name in i+=2 jumps.
+  @note only when name matches, we check for value match. 
+*/
 bool Field::match(String packet) {
 	size_t size = 0;
 	String* sub_string;
