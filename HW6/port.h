@@ -20,10 +20,6 @@ public:
 	*/
 	Port(String pattern);
 	/*
-	  @brief default constructor
-	*/
-	~Port();
-	/*
       @brief checks for a match in port address between packet and rule's limits.
       @return true iff match.
 	*/
