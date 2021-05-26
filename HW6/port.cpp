@@ -9,12 +9,6 @@ Port::Port(String pattern) : Field(pattern) {
 }
 
 /*
-  @brief default destructor, taking no params
-*/
-Port::~Port() {
-}
-
-/*
    @brief checks if the packet's port is inside the rule's limits
    @param packet is the packet's port.
 */
