@@ -9,11 +9,6 @@ Ip::Ip(String pattern): Field(pattern) {
 }
 
 /*
-  @brief default destructor, taking no params
-*/
-Ip::~Ip() {
-}
-/*
   @brief sets ip limits for eligible packet
   @param val is the ip rule to calculate the limits
 */
