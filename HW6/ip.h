@@ -13,22 +13,18 @@ private:
 
 public: 
 	/*
-      @brief default constructor, takes pattern and insert to Field's 
+          @brief default constructor, takes pattern and insert to Field's 
              private variable "pattern"
 	*/
 	Ip(String pattern);
-	/*
-	  @brief default constructor
-	*/
-	~Ip();
 	/*
 	  @brief takes a rule and decides on ip limits based on ip and mask.
 	  @note returns true upon success, false for error
 	*/
 	virtual bool set_value(String val);
 	/*
-      @brief checks for a match in ip address between packet and rule's limits.
-      @return true iff match.
+         @brief checks for a match in ip address between packet and rule's limits.
+         @return true iff match.
 	*/
 	virtual bool match_value(String packet) const;
 };
