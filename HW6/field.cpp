@@ -11,11 +11,6 @@ Field::Field(String pattern) {
 }
 
 /*
-  @brief default destructor, taking no params
-*/
-Field::~Field() {
-}
-/*
   @brief compares between packet and rule to find a match.
   @note after split, the order in sub_string becomes name-value-name-value,and
         therefore we scan for name in i+=2 jumps.
