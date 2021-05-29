@@ -1,14 +1,14 @@
 #!/bin/bash
 chmod +x ./firewall.sh
 #to read stdin value before loop changes cat.
-packets=`cat`
+packets=`cat | tr -d '\t'`
 passed_all=""
 
 	while read rule
 	do
-		#eliminate spaces,empty lines,comment lines, and extra commas
-		rule_cut=`echo "$rule" |sed 's/,\{2,\}//g' | sed 's/ //g' | sed '/^$/d'`
-		only_rule=`echo "$rule_cut"| sed 's/,\{2,\}/,/g' | grep -o '^[^#]*'`
+		#eliminate spaces,empty lines, and comment lines
+		rule_cut=`echo "$rule" | sed 's/ //g' |sed 's/,\{2,\}/,/g' |sed '/^$/d'`
+		only_rule=`echo "$rule_cut" | grep -o '^[^#]*'`
 		if [[ -n $only_rule ]]; then
 			#split the rule to different filters
 			readarray -d , -t filter_type <<< "$only_rule"
