@@ -9,7 +9,7 @@ LIBS = libfirewall.so libinput.so
 LIB_OBJS = string.o field.o ip.o port.o
 
 $(EXEC) : ${OBJS} ${LIBS}
-	$(CXX) ${CXXFLAGS} $(OBJS) -o $(EXEC) -lfirewall -linput -L.
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(EXEC) -lfirewall -linput -L.
 
 libfirewall.so: ${LIB_OBJS}
 	$(CXXLINK) $(CXXFLAGS) -shared ${LIB_OBJS} -o libfirewall.so -L.
