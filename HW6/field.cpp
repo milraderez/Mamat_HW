@@ -10,6 +10,10 @@ Field::Field(String pattern) {
 	this->pattern = pattern;
 }
 
+Field::~Field(){
+	
+}
+
 /*
   @brief compares between packet and rule to find a match.
   @note after split, the order in sub_string becomes name-value-name-value,and
