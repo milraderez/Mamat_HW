@@ -22,8 +22,10 @@ bool Ip::set_value(String val) {
 	}
 	int ip = sub_string[0].trim().to_integer();
 	int mask_size = sub_string[1].trim().to_integer();
-	if (mask_size < 0 || mask_size > INT_BITS)
+	if (mask_size < 0 || mask_size > INT_BITS){
+	        delete[] sub_string;
 		return false;
+	}
 	unsigned int bitmask;
 	if (mask_size == INT_BITS) {
 		smallest_address = biggest_address = ip;
