@@ -190,6 +190,7 @@ int String::to_integer() const {
 		for (unsigned int i = 0; i < size; i++) {
 			int current_byte = atoi(sub_str[i].trim().data);
 			if (current_byte < MIN_BYTE_SIZE || current_byte > MAX_BYTE_SIZE) {
+				delete[] sub_str;
 				return 0;
 			}
 			else {
