@@ -13,7 +13,7 @@ Ip::Ip(String pattern): Field(pattern) {
   @param val is the ip rule to calculate the limits
 */
 bool Ip::set_value(String val) {
-	String* sub_string;
+	String *sub_string;
 	size_t size = 0;
 	val.split("/", &sub_string, &size);
 	if (size != MASK_DISECT) {
