@@ -38,7 +38,7 @@ String::String(const String &str) {
 /*
    @brief copy constructor by string
 */
-String::String(const char* str) {
+String::String(const char *str) {
 	if (str == NULL) {
 		this->data = NULL;
 		this->length = 0;
@@ -83,7 +83,7 @@ String& String::operator=(const String &rhs) {
 /*
     @brief = operator by string
 */ 
-String& String::operator=(const char* str) {
+String& String::operator=(const char *str) {
 	if (this->data != NULL) {
 		delete[] this->data;
 	}
@@ -108,7 +108,7 @@ String& String::operator=(const char* str) {
 /* 
    @brief equal check on reference
 */   
-bool String::equals(const String& rhs) const {
+bool String::equals(const String &rhs) const {
 	if (rhs.length != this->length) {
 		return false;
 	}
@@ -121,7 +121,7 @@ bool String::equals(const String& rhs) const {
 /* 
    @brief equal check on string
 */ 
-bool String::equals(const char* rhs) const {
+bool String::equals(const char *rhs) const {
 	if (strlen(rhs) != this->length) {
 		return false;
 	}
@@ -137,7 +137,7 @@ bool String::equals(const char* rhs) const {
    		 delimiter, and sends the new word to output.
    @note last send to output outside the loop meant for the last substring.
 */
-void String::split(const char* delimiters, String** output, size_t* size) const
+void String::split(const char *delimiters, String **output, size_t *size) const
 {
 	int deli_count = 0, subs_start = 0;
 	unsigned int deli_types_count = 0,current_subs = 0;
@@ -161,21 +161,21 @@ void String::split(const char* delimiters, String** output, size_t* size) const
 		return;
 	}
     *output = new String[deli_count + 1];
-    char* temp_str = new char[this->length + 1];
-	strncpy(temp_str, this->data, this->length + 1);
-	for (unsigned int i = 0; i < this->length; i++) {
-		for (unsigned int deli = 0; deli < deli_types_count; deli++) {
-			if (temp_str[i] == delimiters[deli]) {
-				temp_str[i] = STRING_END;
-				(*output)[current_subs] = String(&temp_str[subs_start]);
-				subs_start = i + 1;
-				current_subs++;
-			}
-		  }
-     	}
-		(*output)[current_subs] = String(&temp_str[subs_start]);
-		delete[] temp_str;
-		return;
+    char *temp_str = new char[this->length + 1];
+    strncpy(temp_str, this->data, this->length + 1);
+    for (unsigned int i = 0; i < this->length; i++) {
+	for (unsigned int deli = 0; deli < deli_types_count; deli++) {
+		if (temp_str[i] == delimiters[deli]) {
+			temp_str[i] = STRING_END;
+			(*output)[current_subs] = String(&temp_str[subs_start]);
+			subs_start = i + 1;
+			current_subs++;
+		}
+	  }
+    }
+    (*output)[current_subs] = String(&temp_str[subs_start]);
+    delete[] temp_str;
+    return;
 }
 
 /*
@@ -184,7 +184,7 @@ void String::split(const char* delimiters, String** output, size_t* size) const
 int String::to_integer() const {
 	int num = 0;
 	size_t size = 0;
-	String* sub_str;
+	String *sub_str;
 	split(".", &sub_str, &size);
 	if(size == IP_SIZE){
 		for (unsigned int i = 0; i < size; i++) {
