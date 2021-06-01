@@ -22,7 +22,7 @@ Field::~Field(){
 */
 bool Field::match(String packet) {
 	size_t size = 0;
-	String* sub_string;
+	String *sub_string;
 	bool field_match = false;
 	packet.split(",=", &sub_string, &size);
 	if(size == 0){
