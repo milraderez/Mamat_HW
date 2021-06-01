@@ -26,7 +26,7 @@ bool Port::match_value(String packet) const {
   @param val is the port rule to calculate the limits
 */
 bool Port::set_value(String val) {
-	String* sub_string;
+	String *sub_string;
 	size_t size = 0;
 	val.split("-", &sub_string, &size);
 	if (size != PORT_DISECT) {
