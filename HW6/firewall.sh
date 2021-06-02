@@ -20,7 +20,7 @@ passed_all=""
 			passed_all+=`echo "${passed_4}" |sed 's/src-ip/\nsrc-ip/'`
 		fi
 	done < "$1"
-# -e to treat the \n, sed for removing emtpy lines and spaces, and sort + unique
-echo -e "$passed_all" | sed '/^$/d' | sed 's/ //g' | sort -u
+# -e to treat the \n, sed for removing emtpy lines and spaces, and sort
+echo -e "$passed_all" | sed '/^$/d' | sed 's/ //g' | sort
 
 
