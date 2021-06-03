@@ -17,16 +17,19 @@
    @brief default constructor, taking no params
 */
 String::String() {
-	this->data = NULL;
-	this->length = 0;
+	this->data = new char[1];
+	this->data[0] = STRING_END;
+	this->length = 1;
 }
 
 /* 
    @brief copy constructor by reference
 */
 String::String(const String &str) {
-	if (str.length == 0) {
-		this->data = NULL;
+	if (str.length == 1) {
+		this->data = new char[1];
+		this->data[0] = STRING_END;
+		this->length = 1;
 	}
 	else {
 		this->length = str.length;
@@ -40,8 +43,9 @@ String::String(const String &str) {
 */
 String::String(const char *str) {
 	if (str == NULL) {
-		this->data = NULL;
-		this->length = 0;
+		this->data = new char[1];
+		this->data[0] = STRING_END;
+		this->length = 1;
 	}
 	else {
 		this->length = strlen(str);
@@ -88,14 +92,17 @@ String& String::operator=(const char *str) {
 		delete[] this->data;
 	}
 	if (str == NULL) {
-		this->data = NULL;
-		this->length = 0;
+		this->data = new char[1];
+		this->data[0] = STRING_END;
+		this->length = 1;
 		return *this;
 	}
 	else {
 		this->length = strlen(str);
-		if (this->length == 0) {
-			this->data = NULL;
+		if (this->length == 1) {
+				this->data = new char[1];
+				this->data[0] = STRING_END;
+				this->length = 1;
 		}
 		else {
 			this->data = new char[this->length + 1];
@@ -133,7 +140,7 @@ bool String::equals(const char *rhs) const {
 
 /*
    @brief splits the string by delimiters,returns separated value to output.
-   @note scans for number of delimiters, and then rerun and set '/0' for each
+   @note scans for number of delimiters, and then rerun and set '\0' for each
    		 delimiter, and sends the new word to output.
    @note last send to output outside the loop meant for the last substring.
 */
